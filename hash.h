@@ -43,28 +43,6 @@ TPL(T, ll_insert)(TPL(T, ll) *ll, T what)
 	return what;
 }
 
-static T
-TPL(T, ll_insert_back)(TPL(T, ll) *ll, T what)
-{
-	TPL(T, ll_) *n = malloc(sizeof(TPL(T, ll_)));
-	n->val = what;
-	n->next = NULL;
-	if (ll->back) ll->back->next = n;
-	ll->back = n;
-	if (ll->head == NULL) ll->head = n;
-	return what;
-}
-
-static T
-TPL(T, ll_insert_after)(TPL(T, ll) *ll, TPL(T, ll_) *after, T what)
-{
-	TPL(T, ll_) *n = malloc(sizeof(TPL(T, ll_)));
-	n->val = what;
-	n->next = after->next;
-	after->next = n;
-	return what;
-}
-
 static TPL(T, ll_) *
 TPL(T, ll_lookup)(TPL(T, ll) *ll, char *what)
 {
