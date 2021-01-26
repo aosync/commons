@@ -10,6 +10,7 @@
 typedef struct TPL(T, ll__) {
 	T					val;
 	struct TPL(T, ll__)	*next;
+	struct TPL(T, ll__)	*prev;
 } TPL(T, ll_);
 
 typedef struct {
@@ -29,7 +30,9 @@ TPL(T, ll_insert)(TPL(T, ll) *ll, T what)
 {
 	TPL(T, ll_) *n = malloc(sizeof(TPL(T, ll_)));
 	n->val = what;
+	ll->head->prev = n;
 	n->next = ll->head;
+	n->prev = NULL;
 	if (ll->back == NULL) ll->back = n;
 	ll->head = n;
 	return what;
@@ -41,6 +44,7 @@ TPL(T, ll_insert_back)(TPL(T, ll) *ll, T what)
 	TPL(T, ll_) *n = malloc(sizeof(TPL(T, ll_)));
 	n->val = what;
 	n->next = NULL;
+	n->prev = ll->back;
 	if (ll->back) ll->back->next = n;
 	ll->back = n;
 	if (ll->head == NULL) ll->head = n;
